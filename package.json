@@ -1,0 +1,17 @@
+{
+  "name": "manu",
+  "version": "1.0.0",
+  "description": "Read devdocs.io docs from your cozy terminal",
+  "bin": {
+    "manu": "bin/manu.js"
+  },
+  "author": "Delapouite <delapouite@gmail.com> (http://delapouite.com)",
+  "license": "ISC",
+  "dependencies": {
+    "home-dir": "^1.0.0",
+    "mkdirp": "^0.5.1",
+    "optimist": "^0.6.1",
+    "request": "^2.72.0",
+    "to-markdown": "^3.0.0"
+  }
+}
