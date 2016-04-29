@@ -6,6 +6,14 @@
     "manu": "bin/manu.js"
   },
   "author": "Delapouite <delapouite@gmail.com> (http://delapouite.com)",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/byteclubfr/manu.git"
+  },
+  "bugs": {
+    "url": "https://github.com/byteclubfr/manu/issues"
+  },
+  "homepage": "https://github.com/byteclubfr/manu",
   "license": "ISC",
   "dependencies": {
     "home-dir": "^1.0.0",
