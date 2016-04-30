@@ -30,6 +30,8 @@ mad ramda
 
 Et voilà !
 
+**Hint:** You can do both operations in one go using `manu pull ramda`
+
 ## Install
 
 Install [mad](https://github.com/tj/mad), then:
@@ -45,6 +47,12 @@ export MAD_PATH=~/.manu-pages/md
 ```
 
 ## Usage
+
+pull = fetch + convert
+
+```sh
+manu pull <doc>
+```
 
 ```sh
 manu fetch <doc>
