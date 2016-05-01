@@ -16,9 +16,13 @@
   "homepage": "https://github.com/byteclubfr/manu",
   "license": "ISC",
   "dependencies": {
+    "console.table": "^0.4.0",
     "home-dir": "^1.0.0",
     "mkdirp": "^0.5.1",
+    "moment": "^2.13.0",
+    "mz": "^2.4.0",
     "optimist": "^0.6.1",
+    "ramda": "^0.21.0",
     "request": "^2.72.0",
     "to-markdown": "^3.0.0"
   }

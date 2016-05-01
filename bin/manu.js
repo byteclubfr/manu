@@ -1,13 +1,15 @@
 #!/usr/bin/env node
 
 const args = require('optimist').argv;
-const { fetch, convert, pull } = require('../index')
+const { ls, fetch, convert, pull } = require('../index')
 
 const action = args._.shift()
 
 const usage = () => {
 console.log(`
   Usage:
+    manu ls
+
     manu pull <doc> (fetch + convert)
 
     manu fetch <doc>
@@ -16,6 +18,10 @@ console.log(`
 }
 
 switch (action) {
+	case 'ls':
+		ls()
+		break;
+
 	case 'pull':
 		pull(args._)
 		break

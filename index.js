@@ -1,11 +1,51 @@
-const fs = require('fs')
+const fs = require('mz/fs')
+const { basename } = require('path')
 const request = require('request')
 const toMarkdown = require('to-markdown')
 const mkdirp = require('mkdirp')
 const homeDir = require('home-dir')
+const moment = require('moment')
+const { compose, curry, groupBy, map,
+	merge, prop, reduce, values } = require('ramda')
+require('console.table')
 
 const JSON_PATH = homeDir('.manu-pages/json')
 const MD_PATH = homeDir('.manu-pages/md')
+
+process.on('unhandledRejection', (reason, p) => {
+	console.error('Unhandled Rejection at: Promise ', p, ' reason: ', reason)
+});
+// utils
+
+// keep only needed info for table output
+const formatStat = curry((file, stat) => {
+	const [name, ext] = basename(file).split('.')
+	return { name, [ext]: moment(stat.mtime).fromNow() }
+})
+
+// add name prop to basic stat objects
+const getStats = compose(
+	Promise.all.bind(Promise),
+	map((f) => fs.stat(f).then(formatStat(f)))
+)
+
+const getFullPath = curry((path, files) => files.map((f) => `${path}/${f}`))
+
+const readDir = (path) =>
+	fs.readdir(path).then(getFullPath(path)).then(getStats)
+
+const toTable = compose(
+	values,
+	map((reduce(merge, {}))),
+	groupBy(prop('name'))
+)
+
+// read cache to display last dates of fetch and convert
+const ls = () =>
+	Promise.all([readDir(JSON_PATH), readDir(MD_PATH)])
+	.then(([jsons, mds]) => {
+		console.table(toTable(jsons.concat(mds)))
+	})
 
 const fetch = (doc) => {
 	const req = request
@@ -56,6 +96,7 @@ const pull = (docs) => {
 	)
 }
 
+exports.ls = ls
 exports.fetch = fetchAll
 exports.convert = convertAll
 exports.pull = pull

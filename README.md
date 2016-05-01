@@ -1,3 +1,6 @@
+[![npm version](https://badge.fury.io/js/manu.svg)](http://badge.fury.io/js/manu)
+[![Dependency Status](https://david-dm.org/byteclubfr/manu.png)](https://david-dm.org/byteclubfr/manu)
+
 # manu
 
 **Read [devdocs.io](http://devdocs.io/) content from your cozy terminal.**
@@ -48,15 +51,24 @@ export MAD_PATH=~/.manu-pages/md
 
 ## Usage
 
-pull = fetch + convert
+List fetched and converted docs:
+
+```sh
+manu ls
+```
+
+Pull = fetch + convert:
 
 ```sh
 manu pull <doc>
 ```
+Download json raw data from devdocs.io to local cache:
 
 ```sh
 manu fetch <doc>
 ```
+
+Convert raw json to markdown:
 
 ```sh
 manu convert <doc>
