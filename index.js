@@ -5,7 +5,7 @@ const toMarkdown = require('to-markdown')
 const mkdirp = require('mkdirp')
 const homeDir = require('home-dir')
 const moment = require('moment')
-const { compose, curry, groupBy, map,
+const { compose, curry, groupBy, join,  map, mapObjIndexed,
 	merge, prop, reduce, values } = require('ramda')
 require('console.table')
 
@@ -43,9 +43,9 @@ const toTable = compose(
 // read cache to display last dates of fetch and convert
 const ls = () =>
 	Promise.all([readDir(JSON_PATH), readDir(MD_PATH)])
-	.then(([jsons, mds]) => {
+	.then(([jsons, mds]) =>
 		console.table(toTable(jsons.concat(mds)))
-	})
+	)
 
 const fetch = (doc) => {
 	const req = request
@@ -64,10 +64,16 @@ const fetchAll = (docs) =>
 		)
 	)
 
+// docs can be separated in many pages, for now we just concatenate them with <hr>
+const toMd = compose(
+	join('\n\n----------\n\n'),
+	values,
+	mapObjIndexed((v, k) => toMarkdown(`\n# ${k}\n\n${v}`)),
+	JSON.parse
+)
+
 const convert = (doc, content) => {
-		const json = JSON.parse(content)
-		const md = toMarkdown(json.index)
-		fs.writeFile(`${MD_PATH}/${doc}.md`, md, (err) => {
+		fs.writeFile(`${MD_PATH}/${doc}.md`, toMd(content), (err) => {
 			if (err) throw err
 			console.log(`${doc}.md generated in ${MD_PATH}`)
 		})
