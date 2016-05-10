@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 const args = require('optimist').argv;
-const { ls, fetch, convert, pull } = require('../index')
+const { ls, fetch, convert, extract, pull } = require('../index')
 
 const action = args._.shift()
 
@@ -10,10 +10,11 @@ console.log(`
   Usage:
     manu ls
 
-    manu pull <doc> (fetch + convert)
+    manu pull <doc>    — fetch + convert + extract
 
-    manu fetch <doc>
-    manu convert <doc>
+    manu fetch <doc>   – download JSON from server
+    manu convert <doc> – convert JSON to markdown
+    manu extract <doc> – extract HTML from JSON
 `)
 }
 
@@ -32,6 +33,10 @@ switch (action) {
 
 	case 'convert':
 		convert(args._)
+		break
+
+	case 'extract':
+		extract(args._)
 		break
 
 	default:

@@ -31,9 +31,23 @@ This will convert the previously fetched JSON file to `~/.manu-pages/md/ramda.md
 mad ramda
 ```
 
-Et voilà !
+**Et voilà !**
 
-**Hint:** You can do both operations in one go using `manu pull ramda`
+Even better:
+
+```sh
+manu extract ramda
+```
+
+HTML files have now been extracted to `~/.manu-pages/html/ramda/`
+
+You can browse them and follow internal links smoothly.
+
+```sh
+lynx ~/.manu-pages/html/ramda/index.html
+```
+
+**Hint:** You can do all the operations in one go using `manu pull ramda`
 
 ## Install
 
@@ -51,27 +65,33 @@ export MAD_PATH=~/.manu-pages/md
 
 ## Usage
 
-List fetched and converted docs:
+List fetched (JSON), converted (MD) and extracted (HTML) docs:
 
 ```sh
 manu ls
 ```
 
-Pull = fetch + convert:
+Pull = fetch + convert + extract :
 
 ```sh
 manu pull <doc>
 ```
-Download json raw data from devdocs.io to local cache:
+Download JSON raw data from devdocs.io to local cache:
 
 ```sh
 manu fetch <doc>
 ```
 
-Convert raw json to markdown:
+Convert raw JSON to markdown:
 
 ```sh
 manu convert <doc>
+```
+
+Extract HTML files from the raw JSON
+
+```sh
+manu extract <doc>
 ```
 
 ## License
