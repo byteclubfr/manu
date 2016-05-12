@@ -5,6 +5,9 @@
   "bin": {
     "manu": "bin/manu.js"
   },
+  "scripts": {
+    "lint": "eslint lib"
+  },
   "author": "Delapouite <delapouite@gmail.com> (http://delapouite.com)",
   "repository": {
     "type": "git",
@@ -17,6 +20,7 @@
   "license": "ISC",
   "dependencies": {
     "console.table": "^0.4.0",
+    "eslint": "^2.9.0",
     "home-dir": "^1.0.0",
     "mkdirp": "^0.5.1",
     "moment": "^2.13.0",
