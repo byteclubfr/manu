@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 
-const args = require('optimist').argv;
-const { ls, fetch, convert, extract, pull } = require('../index')
+const args = require('optimist').argv
+const { fetch, convert, extract, pull } = require('../lib')
+const ls = require('../lib/ls')
 
 const action = args._.shift()
 
@@ -21,7 +22,7 @@ console.log(`
 switch (action) {
 	case 'ls':
 		ls()
-		break;
+		break
 
 	case 'pull':
 		pull(args._)
