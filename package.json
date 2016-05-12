@@ -19,6 +19,7 @@
   "homepage": "https://github.com/byteclubfr/manu",
   "license": "ISC",
   "dependencies": {
+    "chalk": "^1.1.3",
     "console.table": "^0.4.0",
     "eslint": "^2.9.0",
     "home-dir": "^1.0.0",
