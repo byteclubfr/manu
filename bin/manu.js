@@ -2,14 +2,17 @@
 
 const args = require('optimist').argv
 const { fetch, convert, extract, pull } = require('../lib')
-const ls = require('../lib/ls')
+const { ls, lsRemote } = require('../lib/ls')
+const { tildeToDash } = require('../lib/util')
 
 const action = args._.shift()
+const docs = args._.map(tildeToDash)
 
 const usage = () => {
 console.log(`
   Usage:
-    manu ls
+    manu ls            – list local docs
+    manu ls -a         – list local and remote docs
 
     manu pull <doc>    — fetch + convert + extract
 
@@ -21,23 +24,23 @@ console.log(`
 
 switch (action) {
 	case 'ls':
-		ls()
+		args.a ? lsRemote () : ls()
 		break
 
 	case 'pull':
-		pull(args._)
+		pull(docs)
 		break
 
 	case 'fetch':
-		fetch(args._)
+		fetch(docs)
 		break
 
 	case 'convert':
-		convert(args._)
+		convert(docs)
 		break
 
 	case 'extract':
-		extract(args._)
+		extract(docs)
 		break
 
 	default:

@@ -47,7 +47,9 @@ You can browse them and follow internal links smoothly.
 lynx ~/.manu-pages/html/ramda/index.html
 ```
 
-**Hint:** You can do all the operations in one go using `manu pull ramda`
+**Hints:**
+- You can do all the operations in one go using `manu pull ramda`
+- You can target a specific version of docs if available `manu pull angular-1.5`
 
 ## Install
 
@@ -69,6 +71,12 @@ List fetched (JSON), converted (MD) and extracted (HTML) docs:
 
 ```sh
 manu ls
+```
+
+List all local and available docs
+
+```sh
+manu ls -a
 ```
 
 Pull = fetch + convert + extract :
