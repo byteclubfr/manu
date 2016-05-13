@@ -102,6 +102,12 @@ Extract HTML files from the raw JSON
 manu extract <doc>
 ```
 
+Remove local files
+
+```sh
+manu rm <doc>
+```
+
 ## License
 
 ISC

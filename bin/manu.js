@@ -3,6 +3,7 @@
 const args = require('optimist').argv
 const { fetch, convert, extract, pull } = require('../lib')
 const { ls, lsRemote } = require('../lib/ls')
+const { rm } = require('../lib/rm')
 const { tildeToDash } = require('../lib/util')
 
 const action = args._.shift()
@@ -19,6 +20,8 @@ console.log(`
     manu fetch <doc>   – download JSON from server
     manu convert <doc> – convert JSON to markdown
     manu extract <doc> – extract HTML from JSON
+
+    manu rm <doc>      – remove local files
 `)
 }
 
@@ -41,6 +44,10 @@ switch (action) {
 
 	case 'extract':
 		extract(docs)
+		break
+
+	case 'rm':
+		rm(docs)
 		break
 
 	default:
